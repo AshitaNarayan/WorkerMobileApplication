@@ -1,0 +1,64 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Available Work</ion-title>
+
+    <!--ion-buttons end>
+      <button ion-button icon-only (click)="addItem()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons-->
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-list>
+	<ion-item>
+		<ion-range min="1" max="30" [(ngModel)]="location" color="secondary">
+		<ion-label range-left>Location 1 KM</ion-label>
+		<ion-label range-right>30 KM</ion-label>
+		</ion-range>
+	</ion-item>
+		<ion-item>
+		<ion-range min="1" max="10000" [(ngModel)]="charges" color="secondary">
+		<ion-label range-left>Pay 1 Rs</ion-label>
+		<ion-label range-right>10000 Rs</ion-label>
+		</ion-range>
+	</ion-item>
+	<button ion-button full>Get me Work</button>
+  </ion-list>
+  <ion-searchbar [(ngModel)]="myInput" (ionInput)="onInput($event)">
+  </ion-searchbar>
+  <div padding>
+	<ion-segment [(ngModel)]="sortBy">
+		<ion-segment-button value="rating">
+      Rating
+		</ion-segment-button>
+		<ion-segment-button value="pay">
+		Pay
+		</ion-segment-button>
+		<ion-segment-button value="location">
+		Location
+		</ion-segment-button>
+	</ion-segment>
+  </div>
+  <ion-list>
+    <ion-item-sliding *ngFor="let currentWorkerJobSearchResult of currentWorkerJobSearchResults">
+      <button ion-item (click)="openItem(currentWorkerJobSearchResult)">
+        <ion-avatar item-start>
+          <img [src]="currentWorkerJobSearchResult.profilePic" />
+        </ion-avatar>
+        <h2>{{currentWorkerJobSearchResult.name}}</h2>
+        <p>{{currentWorkerJobSearchResult.about}}</p>
+        <ion-note item-end *ngIf="currentWorkerJobSearchResult.note">{{currentWorkerJobSearchResult.note}}</ion-note>
+      </button>
+
+      <ion-item-options>
+        <button ion-button color="danger" (click)="deleteItem(item)">
+          {{ 'DELETE_BUTTON' | translate }}
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

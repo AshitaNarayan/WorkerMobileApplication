@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>My Work</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+	<ion-item>
+		<ion-label>Job Description</ion-label>
+		<ion-input placeholder="Task Detail here..."></ion-input>
+	</ion-item>
+	<ion-item>
+		<ion-label>Pay Out (Rs) </ion-label>
+		<ion-input type="number"></ion-input>
+	</ion-item>
+	<ion-item>
+		<ion-label>Location</ion-label>
+		<ion-input placeholder="Area name here..."></ion-input>
+	</ion-item>
+	<ion-item>
+		<ion-label>Capability</ion-label>
+		<ion-select [(ngModel)]="capability">
+			<ion-option value="babysitting">Babysitting</ion-option>
+			<ion-option value="runanerrand">Run an errand</ion-option>
+			<ion-option value="cooking">Cooking</ion-option>
+			<ion-option value="deliverapackage">Deliver a package</ion-option>
+		</ion-select>
+	</ion-item>
+	<button ion-button full (click)="addWorkByCustomer()">Add Work</button>
+  </ion-list>
+  <ion-searchbar [(ngModel)]="myInput" (ionInput)="onInput($event)">
+  </ion-searchbar>
+  <ion-list>
+    <ion-item-sliding *ngFor="let currentWorkerJobSearchResult of currentWorkerJobSearchResults">
+      <button ion-item (click)="openItem(currentWorkerJobSearchResult)">
+        <ion-avatar item-start>
+          <img [src]="currentWorkerJobSearchResult.profilePic" />
+        </ion-avatar>
+        <h2>{{currentWorkerJobSearchResult.name}}</h2>
+        <p>{{currentWorkerJobSearchResult.about}}</p>
+        <ion-note item-end *ngIf="currentWorkerJobSearchResult.note">{{currentWorkerJobSearchResult.note}}</ion-note>
+      </button>
+
+      <ion-item-options>
+        <button ion-button color="danger" (click)="deleteItem(item)">
+          {{ 'DELETE_BUTTON' | translate }}
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
