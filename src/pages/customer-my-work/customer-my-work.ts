@@ -15,7 +15,8 @@ import { WorkerJobSearchResult } from '../../models/workerJobSearchResult';
   templateUrl: 'customer-my-work.html',
 })
 export class CustomerMyWorkPage {
-  currentWorkerJobSearchResults: WorkerJobSearchResult[]
+   
+  json = [];
   
   workDetails = {
 	  customer_Name : "Jon Snow",
@@ -26,8 +27,8 @@ export class CustomerMyWorkPage {
 	  customer_Rating: "4.5"
 	}
 
-  constructor(public navCtrl: NavController, public workerJobSearchResults: WorkerJobSearchResults, public modalCtrl: ModalController,public http: Http) {
-    this.currentWorkerJobSearchResults = this.workerJobSearchResults.query();
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController,public http: Http) {
+    //this.currentWorkerJobSearchResults = this.workerJobSearchResults.query();
   }
 
   /**
@@ -63,18 +64,29 @@ export class CustomerMyWorkPage {
     });*/
 	
 	
-	/*let workDetails = {
-      job_description: "Running an errand",
-      pay_out: "200",
-      location: "Ameerpet",
-	  capability: "runninganerrand"
-	}*/
-	
-	this.http.post("http://localhost:8080/customerAddWork", this.workDetails, options)
+	/*this.http.post("http://localhost:8080/customerAddWork", this.workDetails, options)
       .subscribe(data => {
         console.log(data['_body']);
       }, error => {
         console.log(error);// Error getting the data
+      }); */
+	  
+	  this.http.post("http://localhost:8080/customerAddWork", this.workDetails, options)
+      .map((data: any) => data.json()).subscribe((data: any) => {
+		//console.log(data['_body']);
+		this.json=data;
+		console.log(this.json);
+      }, error => {
+        console.log(error);// Error getting the data
       }); 
+	  
+	  /*this.http.post("http://localhost:8080/workerGetMatchJobs", this.workerDetails, options)
+      .map((data: any) => data.json()).subscribe((data: any) => {
+		//console.log(data['_body']);
+		this.json=data;
+		console.log(this.json);
+      }, error => {
+        console.log(error);// Error getting the data
+      });*/ 
   }
 }

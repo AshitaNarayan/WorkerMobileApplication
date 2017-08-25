@@ -10,12 +10,14 @@ import { WorkerJobSearchResult } from '../../models/workerJobSearchResult';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
 
+// Import ionic2-rating module
+import { NxtLifeIonic2RatingModule } from 'nxtlife-ionic2-rating';
+
 @Component({
   selector: 'page-list-master',
   templateUrl: 'list-master.html'
 })
 export class ListMasterPage {
-  //currentWorkerJobSearchResults: WorkerJobSearchResult[]
   json = [];
   
   currentWorkerJobSearchResults = [];
@@ -28,12 +30,8 @@ export class ListMasterPage {
   }
 
    constructor(public navCtrl: NavController, public modalCtrl: ModalController,public http: Http) {
-    //this.currentWorkerJobSearchResults = this.workerJobSearchResults.query();
   }
   
-  /*constructor(public navCtrl: NavController, public workerJobSearchResults: WorkerJobSearchResults, public modalCtrl: ModalController,public http: Http) {
-    this.currentWorkerJobSearchResults = this.workerJobSearchResults.query();
-  }*/
 
   /**
    * The view loaded, let's query our items for the list
@@ -106,25 +104,5 @@ export class ListMasterPage {
       }, error => {
         console.log(error);// Error getting the data
       }); 
-	 /* var json;
-	  this.http.post("http://localhost:8080/workerGetMatchJobs", this.workerDetails, options).map(res => res.json()).subscribe(data => {
-        json = data;
-    });*/
-	
-	/*let workerJobSearchResults = [
-      {
-        "name": "Run an errand",
-        "profilePic": "assets/img/checkbox-icon.png",
-        "about": "Ameerpet, 600 Rs"
-      },
-	  [{"customerName":"Jon Snow","customerRating":"4.5","jobDescription":"Babysit 1 year old","location":"Ameerpet","payOut":"1000","customerWorkSequence":null,"capability":"babysitting"}]*/
-	
-	/*for (var i of json.data) {
-	this.currentWorkerJobSearchResults.push({
-        "name": i.jobDescription,
-        "profilePic": "assets/img/checkbox-icon.png",
-        "about": i.location + i.payOut
-	});
-	}*/
   }
 }
