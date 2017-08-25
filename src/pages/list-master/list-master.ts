@@ -20,6 +20,8 @@ import { NxtLifeIonic2RatingModule } from 'nxtlife-ionic2-rating';
 export class ListMasterPage {
   json = [];
   
+  serverip = '';
+  
   currentWorkerJobSearchResults = [];
   workerDetails = {
 	  worker_Name : "",
@@ -83,6 +85,7 @@ export class ListMasterPage {
  
  	this.workerDetails.worker_Name = localStorage.getItem('username');
 	this.workerDetails.profile = localStorage.getItem('profile');
+	this.serverip = localStorage.getItem('serverip');
 	
 	console.log(this.workerDetails);
 	
@@ -100,8 +103,9 @@ export class ListMasterPage {
         console.log(error);// Error getting the data
       }); */
 	  
-	  
-	this.http.post("http://localhost:8080/workerGetMatchJobs", this.workerDetails, options)
+	var serverURL = "http://"+this.serverip+"/workerGetMatchJobs";
+	
+	this.http.post(serverURL, this.workerDetails, options)
       .map((data: any) => data.json()).subscribe((data: any) => {
 		//console.log(data['_body']);
 		this.json=data;

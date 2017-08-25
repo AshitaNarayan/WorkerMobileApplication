@@ -27,7 +27,8 @@ export class CustomerMyWorkPage {
 	  capability: "",
 	  customer_Rating: "4.5"
 	}
-
+	
+	serverip = '';
   constructor(public navCtrl: NavController, public modalCtrl: ModalController,public http: Http) {
     //this.currentWorkerJobSearchResults = this.workerJobSearchResults.query();
   }
@@ -61,6 +62,7 @@ export class CustomerMyWorkPage {
  
  	this.workDetails.customer_Name = localStorage.getItem('username');
 	this.workDetails.profile = localStorage.getItem('profile');
+	this.serverip = localStorage.getItem('serverip');
 	
 	console.log(this.workDetails);
 	
@@ -76,7 +78,8 @@ export class CustomerMyWorkPage {
         console.log(error);// Error getting the data
       }); */
 	  
-	  this.http.post("http://localhost:8080/customerAddWork", this.workDetails, options)
+	  var serverURL = "http://"+this.serverip+"/customerAddWork";
+	  this.http.post(serverURL, this.workDetails, options)
       .map((data: any) => data.json()).subscribe((data: any) => {
 		//console.log(data['_body']);
 		this.json=data;

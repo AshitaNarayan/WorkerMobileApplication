@@ -28,6 +28,10 @@
 			<ion-option value="customer">Customer</ion-option>
 	    </ion-select>
       </ion-item>
+	  <ion-item>
+		  <ion-label fixed>Server IP Address </ion-label>
+		  <ion-input required type="serverip" [(ngModel)]="account.serverip" name="serverip"></ion-input>
+	  </ion-item>
       <div padding>
         <button ion-button color="primary" block>{{ 'LOGIN_BUTTON' | translate }}</button>
       </div>

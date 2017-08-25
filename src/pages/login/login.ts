@@ -17,10 +17,11 @@ export class LoginPage {
   // If you're using the username field with or without email, make
   // sure to add it to the type
   
-  account: { username: string, password: string, profile: string } = {
+  account: { username: string, password: string, profile: string , serverip:string} = {
     username : '',
     password : '',
-	profile : ''
+	profile : '',
+	serverip : ''
   };
 
   // Our translated text strings
@@ -41,6 +42,7 @@ export class LoginPage {
 	  localStorage.setItem('username', this.account.username);
 	  localStorage.setItem('password', this.account.password);
 	  localStorage.setItem('profile', this.account.profile);
+	  localStorage.setItem('serverip', this.account.serverip);
 	  this.navCtrl.push(MainPage);
 	  
     //});
