@@ -5,30 +5,30 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-	<ion-item>
+    <form (ngSubmit)="addWorkByCustomer()">
+      <ion-item>
 		<ion-label>Job Description</ion-label>
-		<ion-input placeholder="Task Detail here..."></ion-input>
-	</ion-item>
-	<ion-item>
+		<ion-input placeholder="Task Detail here..." required [(ngModel)]="workDetails.job_Description" ngControl="title" name="job_Description" ></ion-input>
+      </ion-item>
+      <ion-item>
 		<ion-label>Pay Out (Rs) </ion-label>
-		<ion-input type="number"></ion-input>
-	</ion-item>
-	<ion-item>
+		<ion-input type="number" required [(ngModel)]="workDetails.pay_Out" ngControl="pay_Out" name="pay_Out"></ion-input>
+      </ion-item>
+	  <ion-item>
 		<ion-label>Location</ion-label>
-		<ion-input placeholder="Area name here..."></ion-input>
-	</ion-item>
-	<ion-item>
+		<ion-input placeholder="Area name here..." required [(ngModel)]="workDetails.location" ngControl="location" name="location"></ion-input>
+	 </ion-item>
+	 <ion-item>
 		<ion-label>Capability</ion-label>
-		<ion-select [(ngModel)]="capability">
+		<ion-select required [(ngModel)]="workDetails.capability" ngControl="capability" name="capability">
 			<ion-option value="babysitting">Babysitting</ion-option>
 			<ion-option value="runanerrand">Run an errand</ion-option>
 			<ion-option value="cooking">Cooking</ion-option>
 			<ion-option value="deliverapackage">Deliver a package</ion-option>
 		</ion-select>
-	</ion-item>
-	<button ion-button full (click)="addWorkByCustomer()">Add Work</button>
-  </ion-list>
+	 </ion-item>
+      <button ion-button full type="submit" block>Add Work</button>
+    </form> 
   <ion-searchbar [(ngModel)]="myInput" (ionInput)="onInput($event)">
   </ion-searchbar>
   <ion-list>

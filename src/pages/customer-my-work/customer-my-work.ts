@@ -16,6 +16,15 @@ import { WorkerJobSearchResult } from '../../models/workerJobSearchResult';
 })
 export class CustomerMyWorkPage {
   currentWorkerJobSearchResults: WorkerJobSearchResult[]
+  
+  workDetails = {
+	  customer_Name : "Jon Snow",
+      job_Description: "",
+      pay_Out: "",
+      location: "",
+	  capability: "",
+	  customer_Rating: "4.5"
+	}
 
   constructor(public navCtrl: NavController, public workerJobSearchResults: WorkerJobSearchResults, public modalCtrl: ModalController,public http: Http) {
     this.currentWorkerJobSearchResults = this.workerJobSearchResults.query();
@@ -42,32 +51,30 @@ export class CustomerMyWorkPage {
   
   addWorkByCustomer()
   {
+	console.log(this.workDetails);
 	var headers = new Headers();
     headers.append("Accept", 'application/json');
     headers.append('Content-Type', 'application/json' );
-	headers.append('Access-Control-Allow-Origin', 'http://localhost:8101');
-    headers.append('Access-Control-Allow-Credentials', 'true');
     let options = new RequestOptions({ headers: headers });
  
-    /*let postParams = {
-      'job-description': 'Running an errand',
-      'pay-out': '200',
-      'location': 'Ameerpet',
-	  'capability': 'runninganerrand'
-	  
-    }*/
-	let postParams = {
-      title: 'foo',
-      body: 'bar',
-      userId: 1
-    }
-    
-	//http://jsonplaceholder.typicode.com/posts
-    this.http.post("http://localhost:8888/WorkMobileApp/rest/customerAddWork", postParams, options)
+ 	  
+	/*this.http.get('http://localhost:8080/customers').map(res => res.json()).subscribe(data => {
+        console.log(data['_body']);
+    });*/
+	
+	
+	/*let workDetails = {
+      job_description: "Running an errand",
+      pay_out: "200",
+      location: "Ameerpet",
+	  capability: "runninganerrand"
+	}*/
+	
+	this.http.post("http://localhost:8080/customerAddWork", this.workDetails, options)
       .subscribe(data => {
         console.log(data['_body']);
-       }, error => {
+      }, error => {
         console.log(error);// Error getting the data
-      });
+      }); 
   }
 }

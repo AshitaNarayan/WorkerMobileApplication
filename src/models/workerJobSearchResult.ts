@@ -15,5 +15,4 @@ export class WorkerJobSearchResult{
       this[f] = fields[f];
     }
   }
-
 }
