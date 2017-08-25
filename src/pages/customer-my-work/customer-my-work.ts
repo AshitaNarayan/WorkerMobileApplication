@@ -19,7 +19,8 @@ export class CustomerMyWorkPage {
   json = [];
   
   workDetails = {
-	  customer_Name : "Jon Snow",
+	  customer_Name : "",
+	  profile: "",
       job_Description: "",
       pay_Out: "",
       location: "",
@@ -52,13 +53,17 @@ export class CustomerMyWorkPage {
   
   addWorkByCustomer()
   {
-	console.log(this.workDetails);
+	
 	var headers = new Headers();
     headers.append("Accept", 'application/json');
     headers.append('Content-Type', 'application/json' );
     let options = new RequestOptions({ headers: headers });
  
- 	  
+ 	this.workDetails.customer_Name = localStorage.getItem('username');
+	this.workDetails.profile = localStorage.getItem('profile');
+	
+	console.log(this.workDetails);
+	
 	/*this.http.get('http://localhost:8080/customers').map(res => res.json()).subscribe(data => {
         console.log(data['_body']);
     });*/

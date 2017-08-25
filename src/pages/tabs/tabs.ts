@@ -23,8 +23,26 @@ export class TabsPage {
     translateService.get(['TAB1_TITLE', 'TAB2_TITLE', 'TAB3_TITLE']).subscribe(values => {
       //this.tab1Title = values['TAB1_TITLE'];
 	  this.tab1Title = "My Work";
-      this.tab2Title = values['TAB2_TITLE'];
+      this.tab2Title = "My Work";
       this.tab3Title = values['TAB3_TITLE'];
     });
+  }
+  
+  showCustomerTab(){
+	  console.log('In tab show');
+	  if(localStorage.getItem('profile')=== "customer")
+	  {
+		  return true;
+	  }
+	  return false; 
+  }
+  
+    showWorkerTab(){
+	  console.log('In tab show');
+	  if(localStorage.getItem('profile')=== "worker")
+	  {
+		  return true;
+	  }
+	  return false; 
   }
 }

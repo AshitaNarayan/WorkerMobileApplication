@@ -22,7 +22,8 @@ export class ListMasterPage {
   
   currentWorkerJobSearchResults = [];
   workerDetails = {
-	  worker_Name : "White Walker",
+	  worker_Name : "",
+	  profile: "",
       location_Range: "1",
       pay_In_Range: "1",
       worker_Location: "",
@@ -74,13 +75,17 @@ export class ListMasterPage {
   
   getWorkByCustomer()
   {
-	console.log(this.workerDetails);
+	
 	var headers = new Headers();
     headers.append("Accept", 'application/json');
     headers.append('Content-Type', 'application/json' );
     let options = new RequestOptions({ headers: headers });
  
- 	  
+ 	this.workerDetails.worker_Name = localStorage.getItem('username');
+	this.workerDetails.profile = localStorage.getItem('profile');
+	
+	console.log(this.workerDetails);
+	
 	/*this.http.get('http://localhost:8080/customers').map(res => res.json()).subscribe(data => {
         console.log(data['_body']);
     });*/

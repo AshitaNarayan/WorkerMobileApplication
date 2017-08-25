@@ -8,28 +8,26 @@
 
 
 <ion-content>
-  <form (submit)="doLogin()">
+  <form (submit)="doLogin()" validate>
     <ion-list>
-
       <ion-item>
-        <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
-        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+        <ion-label>{{ 'USERNAME' | translate }}</ion-label>
+        <ion-input required type="text" [(ngModel)]="account.username" name="username"></ion-input>
       </ion-item>
-
-      <!--
-      Want to use a Username instead of an Email? Here you go:
-
-      <ion-item>
-        <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
-      </ion-item>
-      -->
+      
 
       <ion-item>
         <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
-        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+        <ion-input required type="password" [(ngModel)]="account.password" name="password"></ion-input>
       </ion-item>
-
+	  
+	   <ion-item>
+        <ion-label fixed>Profile </ion-label>
+        <ion-select required [(ngModel)]="account.profile" ngControl="profile" name="profile">
+			<ion-option value="worker">Worker</ion-option>
+			<ion-option value="customer">Customer</ion-option>
+	    </ion-select>
+      </ion-item>
       <div padding>
         <button ion-button color="primary" block>{{ 'LOGIN_BUTTON' | translate }}</button>
       </div>
