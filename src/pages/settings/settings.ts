@@ -1,95 +1,177 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 
-import { Settings } from '../../providers/settings';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
-import { TranslateService } from '@ngx-translate/core';
 
-/**
- * The Settings page is a simple form that syncs with a Settings provider
- * to enable the user to customize settings for the app.
- *
- */
 @Component({
   selector: 'page-settings',
-  templateUrl: 'settings.html'
+  templateUrl: 'settings.html',
 })
+
 export class SettingsPage {
-  // Our local settings object
-  options: any;
+   
+  workDetails = [{
+	  customer_Name : "White Walker",
+	  profile: "customer",
+      job_Description: "Pick up laundry",
+      pay_Out: "200",
+      location: "Hitech City",
+	  capability: "pickup",
+	  customer_Rating: "3.0"
+	},
+	{
+	  customer_Name : "Tyrion",
+	  profile: "customer",
+      job_Description: "Cooking for a party of 10 people",
+      pay_Out: "5000",
+      location: "Kukatpally",
+	  capability: "cooking",
+	  customer_Rating: "3.5"
+	},
+	{
+	  customer_Name : "Gekko",
+	  profile: "customer",
+      job_Description: "Bake a cake for a birthday party",
+      pay_Out: "2000",
+      location: "Hitech City",
+	  capability: "cooking",
+	  customer_Rating: "4.0"
+	},
+	{
+	  customer_Name : "Myrion",
+	  profile: "customer",
+      job_Description: "Lawn mowing",
+      pay_Out: "500",
+      location: "Hitech City",
+	  capability: "lawnmowing",
+	  customer_Rating: "4.0"
+	},
+	{
+	  customer_Name : "Pyro",
+	  profile: "customer",
+      job_Description: "Pack up my clothes",
+      pay_Out: "1000",
+      location: "Hitech City",
+	  capability: "pack",
+	  customer_Rating: "3.5"
+	},
+	{
+	  customer_Name : "Ludwin",
+	  profile: "customer",
+      job_Description: "Babysit for a 6 year old",
+      pay_Out: "1000",
+      location: "Ameerpet",
+	  capability: "babysitting",
+	  customer_Rating: "5.0"
+	},
+	{
+	  customer_Name : "Ludwin",
+	  profile: "customer",
+      job_Description: "Pick up my grocery",
+      pay_Out: "200",
+      location: "Ameerpet",
+	  capability: "pickup",
+	  customer_Rating: "5.0"
+	},
+	{
+	  customer_Name : "Meera",
+	  profile: "customer",
+      job_Description: "Paint my gate",
+      pay_Out: "1500",
+      location: "Hitech City",
+	  capability: "paint",
+	  customer_Rating: "4.0"
+	},
+	{
+	  customer_Name : "Meera",
+	  profile: "customer",
+      job_Description: "Car pool",
+      pay_Out: "1500",
+      location: "Hitech City",
+	  capability: "carpool",
+	  customer_Rating: "4.0"
+	},
+	{
+	  customer_Name : "Harry",
+	  profile: "customer",
+      job_Description: "Cook my dinner",
+      pay_Out: "500",
+      location: "Hitech City",
+	  capability: "cooking",
+	  customer_Rating: "4.5"
+	},
+	{
+	  customer_Name : "Sejal",
+	  profile: "customer",
+      job_Description: "Babysit a 2 year old",
+      pay_Out: "1000",
+      location: "Hitech City",
+	  capability: "babysitting",
+	  customer_Rating: "3.5"
+	},
+	{
+	  customer_Name : "Payal",
+	  profile: "customer",
+      job_Description: "Babysit a 7 year old",
+      pay_Out: "800",
+      location: "Ameerpet",
+	  capability: "babysitting",
+	  customer_Rating: "3.0"
+	}
+	]
+	
+	serverip = '';
+	constructor(public navCtrl: NavController, public modalCtrl: ModalController,public http: Http) {
+    //this.currentWorkerJobSearchResults = this.workerJobSearchResults.query();
+	}
 
-  settingsReady = false;
-
-  form: FormGroup;
-
-  profileSettings = {
-    page: 'profile',
-    pageTitleKey: 'SETTINGS_PAGE_PROFILE'
-  };
-
-  page: string = 'main';
-  pageTitleKey: string = 'SETTINGS_TITLE';
-  pageTitle: string;
-
-  subSettings: any = SettingsPage;
-
-  constructor(public navCtrl: NavController,
-    public settings: Settings,
-    public formBuilder: FormBuilder,
-    public navParams: NavParams,
-    public translate: TranslateService) {
-  }
-
-  _buildForm() {
-    let group: any = {
-      option1: [this.options.option1],
-      option2: [this.options.option2],
-      option3: [this.options.option3]
-    };
-
-    switch (this.page) {
-      case 'main':
-        break;
-      case 'profile':
-        group = {
-          option4: [this.options.option4]
-        };
-        break;
-    }
-    this.form = this.formBuilder.group(group);
-
-    // Watch the form for changes, and
-    this.form.valueChanges.subscribe((v) => {
-      this.settings.merge(this.form.value);
-    });
-  }
-
+  /**
+   * The view loaded, let's query our items for the list
+   */
   ionViewDidLoad() {
-    // Build an empty form for the template to render
-    this.form = this.formBuilder.group({});
   }
 
-  ionViewWillEnter() {
-    // Build an empty form for the template to render
-    this.form = this.formBuilder.group({});
-
-    this.page = this.navParams.get('page') || this.page;
-    this.pageTitleKey = this.navParams.get('pageTitleKey') || this.pageTitleKey;
-
-    this.translate.get(this.pageTitleKey).subscribe((res) => {
-      this.pageTitle = res;
-    })
-
-    this.settings.load().then(() => {
-      this.settingsReady = true;
-      this.options = this.settings.allSettings;
-
-      this._buildForm();
-    });
+ 
+  bulkDataAdd()
+  {
+	
+	var headers = new Headers();
+    headers.append("Accept", 'application/json');
+    headers.append('Content-Type', 'application/json' );
+    let options = new RequestOptions({ headers: headers });
+ 
+	this.serverip = localStorage.getItem('serverip');
+	
+	console.log(this.workDetails);
+	
+ 
+	var serverURL = "http://"+this.serverip+"/createBulkData";
+	this.http.post(serverURL, this.workDetails, options)
+      .subscribe(data => {
+		console.log(data['_body']);
+      }, error => {
+        console.log(error);// Error getting the data
+      }); 
   }
-
-  ngOnChanges() {
-    console.log('Ng All Changes');
+  
+  clearAllData(){
+	var headers = new Headers();
+    headers.append("Accept", 'application/json');
+    headers.append('Content-Type', 'application/json' );
+    let options = new RequestOptions({ headers: headers });
+ 
+	this.serverip = localStorage.getItem('serverip');
+	
+	console.log('Calling Reset service');
+	
+    let params = {};
+	var serverURL = "http://"+this.serverip+"/resetDataService";
+	this.http.post(serverURL, params, options)
+      .subscribe(data => {
+		console.log(data['_body']);
+      }, error => {
+        console.log(error);// Error getting the data
+      }); 
   }
 }

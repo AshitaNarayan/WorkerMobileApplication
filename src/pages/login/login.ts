@@ -21,7 +21,7 @@ export class LoginPage {
     username : '',
     password : '',
 	profile : '',
-	serverip : ''
+	serverip : '192.168.0.107:8080'
   };
 
   // Our translated text strings
