@@ -17,7 +17,8 @@
           <img src="assets/img/checkbox-icon.png"/>
         </ion-avatar>
         <div display="float">
-			<h2 align="left">{{currentWork.jobDescription}}, {{currentWork.customerName}}, {{currentWork.status}}</h2>
+			<h2 align="left">{{currentWork.jobDescription}}</h2>
+			<h2 align="left">{{currentWork.customerName}}, {{currentWork.status}}</h2>
 			<nxtlife-rating align="right" [(ngModel)]="currentWork.customerRating" ></nxtlife-rating>
 		</div>
         <p>Rs. {{currentWork.payIn}}</p>
