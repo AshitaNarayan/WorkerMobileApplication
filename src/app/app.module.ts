@@ -11,6 +11,12 @@ import { ContentPage } from '../pages/content/content';
 import { ItemCreatePage } from '../pages/item-create/item-create';
 import { ItemDetailPage } from '../pages/item-detail/item-detail';
 import { ListMasterPage } from '../pages/list-master/list-master';
+import { WorkerJobDetailPage } from '../pages/workerJobDetail/worker-job-detail'; 
+import { WorkerJobListPage } from '../pages/worker-job-list/worker-job-list';
+import { CustomerJobListPage } from '../pages/customer-job-list/customer-job-list';
+import { WorkerJobViewPage } from '../pages/worker-job-view/worker-job-view';
+import { CustomerJobViewPage } from '../pages/customer-job-view/customer-job-view';
+
 import { CustomerMyWorkPage } from '../pages/customer-my-work/customer-my-work';
 import { LoginPage } from '../pages/login/login';
 import { MapPage } from '../pages/map/map';
@@ -68,6 +74,11 @@ export function provideSettings(storage: Storage) {
     ItemDetailPage,
     ListMasterPage,
 	CustomerMyWorkPage,
+	WorkerJobDetailPage,
+	WorkerJobListPage,
+	WorkerJobViewPage,
+	CustomerJobViewPage,
+	CustomerJobListPage,
     LoginPage,
     MapPage,
     MenuPage,
@@ -101,6 +112,11 @@ export function provideSettings(storage: Storage) {
     ItemDetailPage,
     ListMasterPage,
 	CustomerMyWorkPage,
+	WorkerJobDetailPage,
+	WorkerJobListPage,
+	WorkerJobViewPage,
+	CustomerJobViewPage,
+	CustomerJobListPage,
     LoginPage,
     MapPage,
     MenuPage,

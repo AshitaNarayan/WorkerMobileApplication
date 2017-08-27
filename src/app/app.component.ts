@@ -8,6 +8,7 @@ import { CardsPage } from '../pages/cards/cards';
 import { ContentPage } from '../pages/content/content';
 //import { FirstRunPage } from '../pages/pages';
 import { ListMasterPage } from '../pages/list-master/list-master';
+import { WorkerJobDetailPage } from '../pages/workerJobDetail/worker-job-detail';
 import { CustomerMyWorkPage } from '../pages/customer-my-work/customer-my-work';
 import { LoginPage } from '../pages/login/login';
 import { MapPage } from '../pages/map/map';
@@ -18,6 +19,8 @@ import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 //import { TutorialPage } from '../pages/tutorial/tutorial';
 import { WelcomePage } from '../pages/welcome/welcome';
+import { WorkerJobViewPage } from '../pages/worker-job-view/worker-job-view';
+import { CustomerJobViewPage } from '../pages/customer-job-view/customer-job-view';
 
 import { CustomerAddWorkService } from '../services/customer-add-work.service';
 

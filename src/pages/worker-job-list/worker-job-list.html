@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>My Jobs</ion-title>
+	<ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="build"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+    <ion-item-sliding *ngFor="let currentWork of json">
+      <button ion-item (click)="openItem(currentWork)">
+        <ion-avatar item-start>
+          <img src="assets/img/checkbox-icon.png"/>
+        </ion-avatar>
+        <div display="float">
+			<h2 align="left">{{currentWork.jobDescription}}, {{currentWork.customerName}}, {{currentWork.status}}</h2>
+			<nxtlife-rating align="right" [(ngModel)]="currentWork.customerRating" ></nxtlife-rating>
+		</div>
+        <p>Rs. {{currentWork.payIn}}</p>
+      </button>
+    </ion-item-sliding>
+  </ion-list>
+  <button ion-button full (click) = "refreshList()" block>Refresh</button>
+</ion-content>

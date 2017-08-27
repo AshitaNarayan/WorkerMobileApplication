@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 
-import { ItemCreatePage } from '../item-create/item-create';
-import { ItemDetailPage } from '../item-detail/item-detail';
+
+import { WorkerJobDetailPage } from '../workerJobDetail/worker-job-detail';
 
 import { WorkerJobSearchResults } from '../../providers/providers';
 
@@ -66,11 +66,11 @@ export class ListMasterPage {
   /**
    * Navigate to the detail page for this item.
    */
-  /*openItem(workerJobSearchResult: WorkerJobSearchResult) {
-    this.navCtrl.push(ItemDetailPage, {
+  openItem(workerJobSearchResult: WorkerJobSearchResult) {
+    this.navCtrl.push(WorkerJobDetailPage, {
       workerJobSearchResult: workerJobSearchResult
     });
-  }*/
+  }
   
   onInput(searchTerm: String) {
   }

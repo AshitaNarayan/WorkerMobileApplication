@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Job Detail</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+<form>
+   <ion-item>
+		<ion-label>Job Description</ion-label>
+		<ion-input name="jobDescription" [(ngModel)]="workerJobDetail.jobDescription"></ion-input>
+   </ion-item>
+   <ion-item>
+		<ion-label>Pay Out</ion-label>
+		<ion-input name="payOut" [(ngModel)]="workerJobDetail.payOut"></ion-input>
+   </ion-item>
+   <ion-item>
+		<ion-label>Customer Name</ion-label>
+		<ion-input name="customerName" [(ngModel)]="workerJobDetail.customerName"></ion-input>
+   </ion-item>
+   <ion-item>
+		<ion-label>Location</ion-label>
+		<ion-input name="location" [(ngModel)]="workerJobDetail.location"></ion-input>
+   </ion-item>
+   <ion-item>
+		<ion-label>Bid Amount</ion-label>
+		<ion-input name="bidAmount" [(ngModel)]="workerJobDetail.bidAmount"></ion-input>
+   </ion-item>
+   <button ion-button full type="submit" (click)="workerInterestInJob()" block>Interested</button>
+</form>
+</ion-content>

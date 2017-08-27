@@ -3,8 +3,7 @@ import { NavController, ModalController } from 'ionic-angular';
 
 import { Http, Headers, RequestOptions } from '@angular/http';
 
-import { ItemCreatePage } from '../item-create/item-create';
-import { ItemDetailPage } from '../item-detail/item-detail';
+import { WorkerJobDetailPage } from '../workerJobDetail/worker-job-detail';
 
 import { WorkerJobSearchResults } from '../../providers/providers';
 
@@ -41,7 +40,7 @@ export class CustomerMyWorkPage {
   /**
    * The view loaded, let's query our items for the list
    */
-  ionViewDidLoad() {
+  ionViewDidEnter() {
 	var headers = new Headers();
     headers.append("Accept", 'application/json');
     headers.append('Content-Type', 'application/json' );
@@ -68,7 +67,7 @@ export class CustomerMyWorkPage {
    * Navigate to the detail page for this item.
    */
   openItem(workerJobSearchResult: WorkerJobSearchResult) {
-    this.navCtrl.push(ItemDetailPage, {
+    this.navCtrl.push(WorkerJobDetailPage, {
       workerJobSearchResult: workerJobSearchResult
     });
   }
