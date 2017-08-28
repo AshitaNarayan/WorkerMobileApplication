@@ -1,6 +1,7 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>My Work</ion-title>
+    <ion-title>Create Work</ion-title>
+	<div align="right">{{customerTitle}}</div>
 	<ion-buttons end>
       <button ion-button icon-only (click)="addItem()">
         <ion-icon name="contact"></ion-icon>
@@ -24,7 +25,7 @@
 		<ion-input placeholder="Area name here..." required [(ngModel)]="workDetails.location" ngControl="location" name="location"></ion-input>
 	 </ion-item>
 	 <ion-item>
-		<ion-label>Capability</ion-label>
+		<ion-label>Work Type</ion-label>
 		<ion-select required [(ngModel)]="workDetails.capability" ngControl="capability" name="capability">
 			<ion-option value="babysitting">Babysitting</ion-option>
 			<ion-option value="runanerrand">Run an errand</ion-option>
@@ -37,15 +38,16 @@
   <ion-searchbar [(ngModel)]="myInput" (ionInput)="onInput($event)">
   </ion-searchbar>
   <ion-list>
+   <ion-list-header ng-show="json.length">WORK LISTING</ion-list-header>
     <ion-item-sliding *ngFor="let currentWork of json">
       <button ion-item>
-        <ion-avatar item-start>
+        <!--ion-avatar item-start>
           <img src="assets/img/checkbox-icon.png"/>
-        </ion-avatar>
+        </ion-avatar-->
 		<div display="float">
-			<h2 align="left">{{currentWork.jobDescription}}</h2>
+			<h2 align="left"> <ion-icon name="hammer"></ion-icon> {{currentWork.jobDescription}}</h2>
 		</div>
-        <p>Rs. {{currentWork.payOut}}</p>
+        <p>&nbsp; Rs. {{currentWork.payOut}}</p>
       </button>
     </ion-item-sliding>
   </ion-list>

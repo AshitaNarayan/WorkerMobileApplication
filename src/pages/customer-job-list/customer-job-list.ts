@@ -15,7 +15,10 @@ import { WorkerJobSearchResult } from '../../models/workerJobSearchResult';
 })
 export class CustomerJobListPage {
    
-  json = [];
+   json = [];
+  
+   customerTitle= '';
+  
   
    workerDetails = {
 		customer_Name : "",
@@ -24,6 +27,7 @@ export class CustomerJobListPage {
 	serverip = '';
 	constructor(public navCtrl: NavController, public modalCtrl: ModalController,public http: Http) {
     //this.currentWorkerJobSearchResults = this.workerJobSearchResults.query();
+	this.customerTitle = localStorage.getItem('username');
 	}
 
   /**

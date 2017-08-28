@@ -9,6 +9,7 @@ import { WorkerJobSearchResults } from '../../providers/providers';
 
 import { WorkerJobSearchResult } from '../../models/workerJobSearchResult';
 
+
 @Component({
   selector: 'page-customer-my-work',
   templateUrl: 'customer-my-work.html',
@@ -16,6 +17,8 @@ import { WorkerJobSearchResult } from '../../models/workerJobSearchResult';
 export class CustomerMyWorkPage {
    
   json = [];
+  
+  customerTitle= '';
   
   workDetails = {
 		  customer_Name : "",
@@ -35,33 +38,30 @@ export class CustomerMyWorkPage {
 	serverip = '';
   constructor(public navCtrl: NavController, public modalCtrl: ModalController,public http: Http) {
     //this.currentWorkerJobSearchResults = this.workerJobSearchResults.query();
+	this.customerTitle = localStorage.getItem('username');
   }
 
-  /**
-   * The view loaded, let's query our items for the list
-   */
-  ionViewDidEnter() {
-	var headers = new Headers();
-    headers.append("Accept", 'application/json');
-    headers.append('Content-Type', 'application/json' );
-    let options = new RequestOptions({ headers: headers });
- 
- 	this.customerDetails.customer_Name = localStorage.getItem('username');
-	this.customerDetails.profile = localStorage.getItem('profile');
-	this.serverip = localStorage.getItem('serverip');
-	
-	console.log(this.customerDetails);
-	  var serverURL = "http://"+this.serverip+"/customerGetWork";
-	  this.http.post(serverURL, this.customerDetails, options)
-      .map((data: any) => data.json()).subscribe((data: any) => {
-		//console.log(data['_body']);
-		this.json=data;
-		console.log(this.json);
-      }, error => {
-        console.log(error);// Error getting the data
-      }); 
-  }
-
+    ionViewDidEnter() {
+		  var headers = new Headers();
+			headers.append("Accept", 'application/json');
+			headers.append('Content-Type', 'application/json' );
+			let options = new RequestOptions({ headers: headers });
+		 
+			this.customerDetails.customer_Name = localStorage.getItem('username');
+			this.customerDetails.profile = localStorage.getItem('profile');
+			this.serverip = localStorage.getItem('serverip');
+			
+			console.log(this.customerDetails);
+			  var serverURL = "http://"+this.serverip+"/customerGetWork";
+			  this.http.post(serverURL, this.customerDetails, options)
+			  .map((data: any) => data.json()).subscribe((data: any) => {
+				//console.log(data['_body']);
+				this.json=data;
+				console.log(this.json);
+			  }, error => {
+				console.log(error);// Error getting the data
+			  }); 
+	}
   
   /**
    * Navigate to the detail page for this item.

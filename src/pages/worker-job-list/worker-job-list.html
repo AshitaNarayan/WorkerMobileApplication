@@ -1,6 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>My Jobs</ion-title>
+	<div align="right">{{workerTitle}}</div>
 	<ion-buttons end>
       <button ion-button icon-only>
         <ion-icon name="build"></ion-icon>
@@ -10,20 +11,20 @@
 </ion-header>
 
 <ion-content>
+    <button ion-button full (click) = "refreshList()" block>Refresh</button>
     <ion-list>
     <ion-item-sliding *ngFor="let currentWork of json">
       <button ion-item (click)="openItem(currentWork)">
-        <ion-avatar item-start>
+        <!--ion-avatar item-start>
           <img src="assets/img/checkbox-icon.png"/>
-        </ion-avatar>
+        </ion-avatar-->
         <div display="float">
 			<h2 align="left">{{currentWork.jobDescription}}</h2>
-			<h2 align="left">{{currentWork.customerName}}, {{currentWork.status}}</h2>
+			<h2 align="left"> <ion-icon name="person"></ion-icon> {{currentWork.customerName}}, <ion-icon name="radio-button-on"></ion-icon> {{currentWork.status}}</h2>
+			<p>Rs. {{currentWork.payIn}}</p>
 			<nxtlife-rating align="right" [(ngModel)]="currentWork.customerRating" ></nxtlife-rating>
 		</div>
-        <p>Rs. {{currentWork.payIn}}</p>
       </button>
     </ion-item-sliding>
   </ion-list>
-  <button ion-button full (click) = "refreshList()" block>Refresh</button>
 </ion-content>

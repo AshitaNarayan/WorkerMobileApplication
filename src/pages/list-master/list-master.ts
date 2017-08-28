@@ -8,6 +8,7 @@ import { WorkerJobSearchResults } from '../../providers/providers';
 
 import { WorkerJobSearchResult } from '../../models/workerJobSearchResult';
 
+
 import { Http, Headers, RequestOptions } from '@angular/http';
 
 // Import ionic2-rating module
@@ -22,6 +23,8 @@ export class ListMasterPage {
   
   serverip = '';
   
+  workerTitle = '';
+  
   currentWorkerJobSearchResults = [];
   workerDetails = {
 	  worker_Name : "",
@@ -33,14 +36,10 @@ export class ListMasterPage {
   }
 
    constructor(public navCtrl: NavController, public modalCtrl: ModalController,public http: Http) {
+	   this.workerTitle = localStorage.getItem('username');
   }
   
 
-  /**
-   * The view loaded, let's query our items for the list
-   */
-  ionViewDidLoad() {
-  }
 
   /**
    * Prompt the user to add a new item. This shows our ItemCreatePage in a

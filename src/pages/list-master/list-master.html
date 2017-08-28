@@ -2,6 +2,7 @@
 
   <ion-navbar>
     <ion-title>Available Work</ion-title>
+	<div align="right">{{workerTitle}}</div>
     <ion-buttons end>
       <button ion-button icon-only>
         <ion-icon name="build"></ion-icon>
@@ -12,17 +13,24 @@
 
 <ion-content>
 	<form (ngSubmit)="getWorkByCustomer()">
+	 
      <ion-item>
 		<ion-range min="1" max="30" [(ngModel)]="workerDetails.location_Range" color="secondary" name="location_Range">
-			<ion-label range-left>Location 1 KM</ion-label>
+			<ion-label range-left>1 KM</ion-label>
 			<ion-label range-right>30 KM</ion-label>
 		</ion-range>
 	 </ion-item>
 	 <ion-item>
+		<p>Location {{workerDetails.location_Range}}</p>
+	 </ion-item>
+	 <ion-item>
 		<ion-range min="1" max="10000" [(ngModel)]="workerDetails.pay_In_Range" color="secondary" name="pay_In_Range">
-			<ion-label range-left>Pay 1 Rs</ion-label>
+			<ion-label range-left>1 Rs</ion-label>
 			<ion-label range-right>10000 Rs</ion-label>
 		</ion-range>
+	 </ion-item>
+	 <ion-item>
+		<p>Pay {{workerDetails.pay_In_Range}}</p>
 	 </ion-item>
 	 <ion-item>
 		<ion-label>Location</ion-label>
@@ -51,19 +59,20 @@
 		<ion-segment-button value="location">
 		Location
 		</ion-segment-button>
-	</ion-segment>
+	</ion-segment> 
   </div-->
   <ion-list>
+    <ion-list-header ng-show="json.length">WORK LISTING</ion-list-header>
     <ion-item-sliding *ngFor="let currentWork of json">
       <button ion-item (click)="openItem(currentWork)">
-        <ion-avatar item-start>
+        <!--ion-avatar item-start>
           <img src="assets/img/checkbox-icon.png"/>
-        </ion-avatar>
+        </ion-avatar-->
         <div display="float">
-			<h2 align="left">{{currentWork.jobDescription}}, {{currentWork.customerName}}</h2>
+			<h2 align="left"> <ion-icon name="hammer"></ion-icon> {{currentWork.jobDescription}}, <ion-icon name="person"> {{currentWork.customerName}} </ion-icon></h2>
+			<p>&nbsp; Rs. {{currentWork.payOut}}</p>
 			<nxtlife-rating align="right" [(ngModel)]="currentWork.customerRating" ></nxtlife-rating>
 		</div>
-        <p>Rs. {{currentWork.payOut}}</p>
       </button>
     </ion-item-sliding>
   </ion-list>
