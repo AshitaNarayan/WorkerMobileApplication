@@ -35,6 +35,8 @@ export class LoginPage {
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
     })
+	
+	this.account.serverip = localStorage.getItem('serverip');
   }
 
   // Attempt to login in through our User service

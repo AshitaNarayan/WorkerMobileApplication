@@ -52,6 +52,7 @@ export class CustomerJobViewPage {
 	var headers = new Headers();
     headers.append("Accept", 'application/json');
     headers.append('Content-Type', 'application/json' );
+	
     let options = new RequestOptions({ headers: headers });
  
  	this.workerJobDetail.customer_Name = localStorage.getItem('username');
@@ -71,6 +72,17 @@ export class CustomerJobViewPage {
       }); 
 	this.navCtrl.push(CustomerJobListPage, {
     });
+  }
+  
+  
+  hideRateWorker()
+  {
+	  if(this.workerJobDetail.workerRated === 0 && this.workerJobDetail.status === 'Completed')
+	  {
+		  console.log('Show rate worker input');
+		  return false;
+	  }
+	return true;
   }
 
 }

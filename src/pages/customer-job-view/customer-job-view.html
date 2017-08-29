@@ -26,11 +26,11 @@
 		<ion-label>Pay In</ion-label>
 		<ion-input name="bidAmount" [(ngModel)]="workerJobDetail.payIn"></ion-input>
    </ion-item>
-   <ion-item [hidden]="workerJobDetail.workerRated != 0" > 
+   <ion-item [hidden]="hideRateWorker()" > 
     <ion-label>Rate Worker</ion-label>
    </ion-item>
-   <nxtlife-rating align="center" name="rate_customer" [hidden]="workerJobDetail.workerRated != 0" [(ngModel)]="workerJobDetail.worker_rating_given" ></nxtlife-rating>
-    <button ion-button [hidden]="workerJobDetail.workerRated != 0" full type="submit" (click)="customerRateJob()" block>Rate Worker</button>
+   <nxtlife-rating align="center" name="rate_customer" [hidden]="hideRateWorker()" [(ngModel)]="workerJobDetail.worker_rating_given" ></nxtlife-rating>
+   <button ion-button [hidden]="hideRateWorker()" full type="submit" (click)="customerRateJob()" block>Rate Worker</button>
     <ion-item [hidden]="workerJobDetail.status != 'Completed'">
 	   <ion-label>Customer Rating</ion-label>
 	</ion-item>
